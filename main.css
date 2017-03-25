@@ -1,1 +1,115 @@
 /*TYPOGRAPHY*/
+
+html{
+	font:22px Verdana sans-serif;
+}
+
+h1{
+  font:44px Verdana sans-serif;
+}
+
+/*OUTER STRUCTURE*/
+
+body{
+  height:100%;
+}
+
+.outer{
+  display:block;
+  background:hsl(240,30%,10%);
+  padding:20px;
+}
+
+/*INNER STRUCTURE*/
+
+.inner{
+  width:60%;
+  margin:0 auto;
+  box-shadow:7px 7px 7px #000;
+  border-radius:10px;
+  background:hsl(240,30%,90%);
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+}
+
+.inner *{
+  margin:0;
+}
+
+.inner > *:last-child{
+  border-radius:0 0 10px 10px;
+}
+
+/*HEADER*/
+
+.main-head{
+  background:hsla(90,100%,40%,0.80);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  border-radius:10px 10px 0 0;
+}
+
+.main-head > *{
+  flex-grow:1;
+  margin:0 5px;
+}
+
+.main-head #logo{
+  font:44px Verdana sans-serif;
+}
+
+.main-head nav a{
+  text-decoration:none;
+  color:hsl(90,45%,5%);
+  margin:0 5px;
+  float:right;
+}
+
+.main-head nav a:hover{
+  color:hsl(90,30%,40%);
+}
+
+/*FOOTER*/
+
+footer{
+	display:none;
+}
+
+/*CONTENT*/
+
+.content{
+  padding:22px 30px;
+}
+
+/*MOBILE*/
+
+@media screen and (max-width:650px){
+  
+  .outer{
+    padding:10px;
+  }
+  
+  .inner{
+    width:90%;
+    border-radius:0;
+  }
+  
+  .inner *{
+    font:0.9em Verdana sans-serif;
+  }
+  
+  .inner h1{
+    font:33px Verdana sans-serif;
+  }
+  
+  .content{
+    padding:22px 15px;
+  }
+  
+  .main-head{
+    margin:auto;
+    width:100%;
+    border-radius:0;
+  }
+}
