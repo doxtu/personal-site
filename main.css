@@ -96,9 +96,34 @@ footer{
 	margin-bottom:10px;
 }
 
+/*GRID*/
+
+figure{
+}
+
+.grid{
+	display:flex;
+	width:auto;
+	align-items:center;
+	flex-wrap:wrap;
+}
+
+.grid > *{
+	height:200px;
+	width:33%;
+	list-style-type:none;
+}
+
+.grid img{
+	height:100px;
+}
+.grid p{
+	height:100px;
+}
+
 /*MOBILE*/
 
-@media screen and (max-width:650px){
+@media screen and (max-width:600px){
   
   .outer{
     padding:10px;
