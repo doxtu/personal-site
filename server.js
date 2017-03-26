@@ -16,6 +16,7 @@ function getStatic(path){
 
 app.get("/",getStatic("./index.html"));
 app.get("/main.css",getStatic("./main.css"));
+app.get("/normalize.css",getStatic("./normalize.css"));
 app.get("/res/twitter.gif",getStatic("./res/twitter.gif"));
 app.get("/res/codepen.png",getStatic("./res/codepen.png"));
 app.get("/res/github.png",getStatic("./res/github.png"));
