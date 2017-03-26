@@ -110,11 +110,13 @@ figure{
 
 .grid > *{
 	height:200px;
-	width:33%;
+	width:170px;
 	list-style-type:none;
+	padding:10px;
 }
 
 .grid img{
+	width:100%;
 	height:100px;
 }
 .grid p{
@@ -125,30 +127,42 @@ figure{
 
 @media screen and (max-width:600px){
   
-  .outer{
-    padding:10px;
-  }
+  /*MOBILE TYPOGRAPHY*/
+	html{
+		font:22px Verdana sans-serif;
+	}
+
+	h1{
+	  font-size:44px;
+	}
+
+	figcaption{
+		font-size: 33px;
+		font-weight: bold;
+	}
+	
+	h4{
+		font-weight:initial;
+	}
   
-  .inner{
-    width:90%;
-    border-radius:0;
-  }
-  
-  .inner *{
-    font:0.9em Verdana sans-serif;
-  }
-  
-  .inner h1{
-    font:33px Verdana sans-serif;
-  }
-  
-  .content{
-    padding:22px 15px;
-  }
-  
-  .main-head{
-    margin:auto;
-    width:100%;
-    border-radius:0;
-  }
+	/*MOBILE STRUCTURE*/
+	
+	.outer{
+		padding:10px;
+	}
+	  
+	.inner{
+		width:90%;
+		border-radius:0;
+	}
+	  
+	.content{
+		padding:22px 15px;
+	}
+	  
+	.main-head{
+		margin:auto;
+		width:100%;
+		border-radius:0;
+	}
 }
