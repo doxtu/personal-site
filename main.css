@@ -17,6 +17,7 @@ figcaption{
 
 body{
   height:100%;
+  background:hsl(240,30%,10%);
 }
 
 .outer{
