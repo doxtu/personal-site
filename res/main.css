@@ -4,10 +4,6 @@ html{
 	font:22px Verdana sans-serif;
 }
 
-h1{
-  font-size:44px;
-}
-
 figcaption{
 	font-size: 33px;
 	font-weight: bold;
@@ -100,6 +96,7 @@ footer{
 /*GRID*/
 
 figure{
+	border:1px solid red;
 }
 
 .grid{
@@ -126,19 +123,15 @@ figure{
 
 /*MOBILE*/
 
-@media screen and (max-width:600px){
-  
-  /*MOBILE TYPOGRAPHY*/
-	html{
-		font:22px Verdana sans-serif;
-	}
+@media screen and (max-width:1000px){
 
-	h1{
-	  font-size:44px;
+	/*MOBILE TYPOGRAPHY*/
+	html{
+		font:4.5vw Verdana sans-serif;
 	}
 
 	figcaption{
-		font-size: 33px;
+		font-size: 5.5vw;
 		font-weight: bold;
 	}
 	
@@ -156,7 +149,15 @@ figure{
 		width:90%;
 		border-radius:0;
 	}
-	  
+	
+	.grid *{
+		width:100%;
+	}
+
+	.grid img{
+		height:auto;
+	}
+
 	.content{
 		padding:22px 15px;
 	}

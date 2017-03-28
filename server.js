@@ -1,10 +1,8 @@
 var express = require("express");
-var mime = require("mime");
 var app = express();
-var fs = require("fs");
 
 /* Getting all static files from this directory */
-
 app.use(express.static("res"));
 
-app.listen(80);
+/*set port to 80 when pushing to master*/
+app.listen(8000);
