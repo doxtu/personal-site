@@ -7,4 +7,4 @@ var fs = require("fs");
 
 app.use(express.static("res"));
 
-app.listen(8000);
+app.listen(80);
