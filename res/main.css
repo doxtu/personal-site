@@ -1,5 +1,9 @@
 /*TYPOGRAPHY*/
 
+*{
+	box-sizing:border-box;
+}
+
 html{
 	font:22px Verdana sans-serif;
 }
@@ -96,48 +100,34 @@ footer{
 /*GRID*/
 
 figure{
-	border:1px solid red;
+	margin:0;
+	padding:0;
 }
 
 .grid{
 	display:flex;
-	width:auto;
+	width:100%;
 	align-items:center;
 	flex-wrap:wrap;
 }
 
-.grid > *{
-	height:200px;
+.grid li{
+	height:300px;
 	width:170px;
 	list-style-type:none;
 	padding:10px;
 }
 
 .grid img{
-	width:100%;
-	height:100px;
+	width:170px;
 }
 .grid p{
-	height:100px;
+	height:200px;
 }
 
 /*MOBILE*/
 
 @media screen and (max-width:1000px){
-
-	/*MOBILE TYPOGRAPHY*/
-	html{
-		font:4.5vw Verdana sans-serif;
-	}
-
-	figcaption{
-		font-size: 5.5vw;
-		font-weight: bold;
-	}
-	
-	h4{
-		font-weight:initial;
-	}
   
 	/*MOBILE STRUCTURE*/
 	
@@ -146,16 +136,23 @@ figure{
 	}
 	  
 	.inner{
-		width:90%;
+		width:80%;
 		border-radius:0;
 	}
 	
-	.grid *{
+	.grid{
+		display:block;
+	}
+
+	.grid li{
+		display:block;
 		width:100%;
+		height:auto;
+		margin:auto;
 	}
 
 	.grid img{
-		height:auto;
+		width:100%;
 	}
 
 	.content{
