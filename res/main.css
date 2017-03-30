@@ -40,12 +40,12 @@ body{
   box-shadow:7px 7px 7px #000;
   border-radius:10px;
   background:hsl(240,30%,90%);
-  background-attachment:fixed;
-  background-repeat:no-repeat;
 }
 
 .inner > *{
   margin:0;
+  padding:0;
+  border:0;
 }
 
 .inner > *:last-child{
@@ -72,7 +72,7 @@ nav img{
 }
 
 .main-head #logo{
-  font:44px Verdana sans-serif;
+  font:2.75rem Verdana sans-serif;
 }
 
 .main-head nav a{
@@ -89,11 +89,11 @@ nav img{
 /*CONTENT*/
 
 .content{
-  padding:22px 30px;
+  /*padding:22px;*/
 }
 
 .content *{
-	margin-bottom:10px;
+	/*margin-bottom:10px;*/
 }
 
 /*GRID*/
@@ -114,8 +114,8 @@ figure *{
 	height:300px;
 	width:170px;
 	list-style-type:none;
-	padding:10px;
-	margin: 0px 10px;
+	/*padding:10px;
+	margin: 0px 20px 10px 10px;*/
 }
 
 .grid li:hover{
@@ -140,15 +140,15 @@ footer{
 
 /*MOBILE*/
 
-@media screen and (max-width:800px){
+@media (max-width:700px){
 	/*MOBILE STRUCTURE*/
 	
 	.outer{
-		padding:10px;
+		/*padding:10px;*/
 	}
 	  
 	.inner{
-		width:80%;
+		width:95%;
 		border-radius:0;
 	}
 	
@@ -160,7 +160,6 @@ footer{
 		display:block;
 		width:100%;
 		height:auto;
-		margin:auto;
 	}
 
 	.grid img{
@@ -168,7 +167,7 @@ footer{
 	}
 
 	.content{
-		padding:22px 15px;
+		/*padding:22px 15px;*/
 	}
 	  
 	.main-head{
@@ -178,7 +177,7 @@ footer{
 	}
 }
 
-@media screen and (max-width:800px){
+@media screen and (max-width:700px){
 	html{font-size:18px;}
 }
 
