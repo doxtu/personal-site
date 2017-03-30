@@ -13,6 +13,11 @@ figcaption{
 	font-weight: bold;
 }
 
+a{
+	text-decoration:none;
+	color:inherit;
+}
+
 /*OUTER STRUCTURE*/
 
 body{
@@ -81,12 +86,6 @@ nav img{
   color:hsl(90,30%,40%);
 }
 
-/*FOOTER*/
-
-footer{
-	display:none;
-}
-
 /*CONTENT*/
 
 .content{
@@ -99,7 +98,7 @@ footer{
 
 /*GRID*/
 
-figure{
+figure *{
 	margin:0;
 	padding:0;
 }
@@ -116,18 +115,32 @@ figure{
 	width:170px;
 	list-style-type:none;
 	padding:10px;
+	margin: 0px 10px;
+}
+
+.grid li:hover{
+	box-shadow: 0 0 10px #000;
 }
 
 .grid img{
-	width:170px;
+	width:150px;
+	height:100px;
 }
 .grid p{
+	width:150px;
 	height:200px;
 }
 
+/*FOOTER*/
+
+footer{
+	display:none;
+}
+
+
 /*MOBILE*/
 
-@media screen and (max-width:1000px){
+@media screen and (max-width:800px){
 	/*MOBILE STRUCTURE*/
 	
 	.outer{
@@ -165,14 +178,33 @@ figure{
 	}
 }
 
-@media screen and (min-width:800px){
+@media screen and (max-width:800px){
 	html{font-size:18px;}
 }
 
-@media screen and (min-width:600px){
+@media screen and (max-width:600px){
 	html{font-size:20px;}
 }
 
-@media screen and (min-width:400px){
+@media screen and (max-width:400px){
 	html{font-size:22px;}
+	.main-head{
+		display:block;
+	}
+	
+	.main-head #logo,
+	.main-head nav{
+		display:block;
+		margin:auto;
+		text-align:center;
+	}
+	
+	.main-head nav a{
+		float:none;
+		display:inline;
+	}
+	
+	#hidden-at-small{
+		display:none;
+	}
 }
