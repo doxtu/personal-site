@@ -5,11 +5,11 @@
 }
 
 html{
-	font:22px Verdana sans-serif;
+	font:16px Tahoma, sans-serif;
 }
 
 figcaption{
-	font-size: 33px;
+	font-size: 1.4rem;
 	font-weight: bold;
 }
 
@@ -39,7 +39,7 @@ body{
   background-repeat:no-repeat;
 }
 
-.inner *{
+.inner > *{
   margin:0;
 }
 
@@ -128,7 +128,6 @@ figure{
 /*MOBILE*/
 
 @media screen and (max-width:1000px){
-  
 	/*MOBILE STRUCTURE*/
 	
 	.outer{
@@ -164,4 +163,16 @@ figure{
 		width:100%;
 		border-radius:0;
 	}
+}
+
+@media screen and (min-width:800px){
+	html{font-size:18px;}
+}
+
+@media screen and (min-width:600px){
+	html{font-size:20px;}
+}
+
+@media screen and (min-width:400px){
+	html{font-size:22px;}
 }
