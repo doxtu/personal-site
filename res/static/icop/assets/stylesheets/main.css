@@ -1,0 +1,426 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+.eventTable, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+.eventTable {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* GENERAL STUFF */
+
+*{
+	-webkit-box-sizing: border-box;
+		-moz-box-sizing:border-box;
+			 box-sizing:border-box;
+}
+
+body{
+	font: 16px/24px Georgia, Arial, sans-serif;
+}
+
+small{
+	font: 12px Arial, sans-serif;
+	color: #000;
+}
+
+/* HEADER */
+
+.logo h1{
+	font: 600 44px/44px "Handlee";
+	text-align:center;
+	color:#037778;
+}
+
+.logo img{
+	height: 100px;
+}
+
+.logo h1,
+.logo img{
+	vertical-align: middle;
+	margin-top:-22px;
+}
+
+.banner{
+	position:fixed;
+	width:100%;
+	background:#ffe5ee;
+	box-shadow: 2px 4px 2px;
+	height:175px;
+	top:0;
+}
+
+.navlist li{
+	display:inline-block;
+	width: 11%;
+	text-align:center;
+	border:1px solid #feb3cd;
+	font-family: "Handlee";
+	background:linear-gradient(to right, #feb3cd, #ffe5ee);
+	height:50px;
+	padding-top:10px;
+}
+
+.navlist li:first-child,
+.navlist li:last-child{
+	width:10%;
+	border:0;
+	background:0;
+}
+
+
+.navlist a{
+	text-decoration:none;
+	font-size: 22px;
+	color: #037778;
+}
+
+.navlist a:hover{
+	color: #42bfbf;
+}
+
+.top-nav{
+	position: absolute;
+	width:100%;
+	bottom: 0;
+}
+
+.container form{
+	float:right;
+	margin: 10px 10px 0 0;
+}
+
+.container form input{
+	border-radius:5px;
+	height:33px;
+}
+
+.container #searchButton{
+	background:#feb3cd;
+	color:#037778;
+}
+
+/* CONTENT HEADER */
+
+.sectionHeader{
+	font: 600 88px/44px "Handlee";
+	text-align:center;
+	color:#037778;
+	margin:100px 0;
+	width:100%;
+	border:4px solid #037778;
+	padding:30px;
+}
+
+/* HOMEPAGE ORGANIZATION */
+
+.main-section{
+	width: 860px;
+	margin: 0 auto;
+	padding: 50px 0 60px 0;
+}
+
+.homepage-content img{
+	width:150px;
+	height:150px;
+}
+
+.homepage-descriptor{
+	margin-bottom: 44px;
+}
+
+.homepage-descriptor img{
+	display:inline-block;
+	border-radius:50%;
+}
+
+.homepage-info{
+	display:inline-block;
+	vertical-align:top;
+	padding-left:30px;
+	border-top: 2px solid #feb3cd;
+	width:66%;
+}
+
+/* HOMEPAGE TYPOGRAPHY */
+
+h2{
+	font-size: 22px;
+	font-weight: 600;
+	margin-bottom: 22px;
+}
+
+.main-footer li{
+	font-size:14px;
+	font-variant:small-caps;
+}
+
+h3{
+	font-size:18px;
+	color:#fff;
+}
+
+.main-footer a{
+	text-decoration:none;
+	color:#000;
+}
+
+.main-footer a:hover{
+	color:#feb3cd;
+}
+
+
+/* FOOTER */
+
+.main-footer{
+	background:#037778;
+	height: 175px;
+	width:100%;
+}
+
+/* ABOUT KIM */
+
+.about-kim-section{
+	padding: 44px;
+}
+
+.about-kim-section p{
+	text-indent: 3em;
+	font-weight: 300;
+}
+
+.robust-image,
+.wall-of-text{
+	display:inline-block;
+	vertical-align:top;
+}
+
+.robust-image{
+	width:32%;
+	margin-right:22px;
+}
+
+.robust-image img{
+	width:100%;
+	border-radius:50%;
+}
+
+.wall-of-text{
+	width:65%;
+}
+
+/* GOVERNMENT */
+
+.governmentHeading{
+	font-size:22px;
+	text-align:center;
+	color:#037778;
+	border-bottom:4px solid #037778;
+}
+
+#constitution p{
+	margin: 10px auto 0 auto;
+	width:80%;
+	text-indent:3em;	
+}
+
+#constitution p:nth-child(2){
+	margin-top:30px;
+}
+
+#kimDescription,
+#cabinetDescription{
+	margin-top:100px;
+}
+
+.who,
+.what{
+	vertical-align:top;
+	display:inline-block;
+	margin-top:30px;
+	width:50%;
+}
+
+.who li,
+.what li{
+	margin-left:10px;
+	list-style:disc;
+}
+
+.who h5,
+.what h5{
+	font-size:18px;
+	font-weight:600;
+}
+
+/* SEARCH BAR */
+
+.search-bar{
+	float:right;
+	margin: 22px 22px 0 0;
+}
+
+.search-bar input{
+	border-radius:5px;
+}
+
+/*EVENTS */
+
+.eventTable {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 350px;
+}
+.eventTable tr th,
+.eventTable tr td {
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    padding: 5px;
+}
+.eventTable tr th:first-child,
+.eventTable tr td:first-child {
+    border-left: 1px solid #bbb;
+}
+
+.eventTable tr th,
+.eventTable tr:first-child td
+{
+    border-top: 1px solid #bbb;
+}
+
+/* top-left border-radius */
+.eventTable tr:first-child th:first-child {
+    border-top-left-radius: 15px;
+}
+
+/* top-right border-radius */
+.eventTable tr:first-child th:last-child {
+    border-top-right-radius: 15px;
+}
+
+/* bottom-left border-radius */
+.eventTable tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+
+/* bottom-right border-radius */
+.eventTable tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+}
+
+th{
+	vertical-align:middle;
+	color:#037778;
+	font-family:"Handlee";
+	font-size:20px;
+	background:linear-gradient(to right,#feb3cd,#ffe5ee)
+}
+
+tr td:nth-child(2){
+	text-align:center;
+}
+
+/* NEWS PAGE */
+
+#headlineImg,
+#forkliftRacesImg,
+#sushiWarImg{
+	display:block;
+}
+
+#headlineImg{
+	width:100%;
+}
+
+.articleContainer{
+	margin-top:100px;
+}
+
+#recentArticles,
+#featuredArticles{
+	display:inline-block;
+	vertical-align:top;
+}
+
+#recentArticles{
+	width:33%;
+	margin-right:2%;
+}
+
+#featuredArticles{
+	width:64%;
+}
+
+.featuredArticle{
+	height:50%%;
+	display:block;
+}
+
+.featuredArticle img{
+	height:100px;
+}
+
+.featuredArticle h3{
+	color:#000;
+}
+
+/* CLEARFIX */
+.group:before,
+.group:after {
+  content: "";
+  display: .eventTable;
+}
+.group:after {
+  clear: both;
+}
+.group {
+  clear: both;
+  *zoom: 1;
+}
+
+/* PROTECTION FROM THE HEADER */
+
+.content{
+	margin-top:185px;
+}

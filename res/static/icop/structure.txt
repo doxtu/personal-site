@@ -1,0 +1,160 @@
+# illegal-country-of-puff-official-website
+
+================
+Abstract:
+================
+
+The illegal country of puff's official website is a practice design website designed as an informational website for a fictional country. It will consist of several sections, which may be updated as my skills develop. Sections or pages that will be included on the website are Home, About Kim, Government, Events, News, Jobs, and Travel. It will contain a search bar that, as of now, does nothing but look pretty. There is no primary functionality as of yet.
+
+This is my first ever fully self-made website.
+
+================
+Header
+================
+
+The header for the website will contain navigational links to each section of the website on the bottom of the header. There will be a centrally displayed logo depicting flufflepuff, a youtube character and my girlfriend's persona. For the time being, the logo shall be replaced with a cursive title declaring the site as the illegal country of puff.
+
+Color of the header will be light pink.
+
+================
+Footer
+================
+
+The footer shall contain links to related wesbites and related social media/email accounts for contact.
+
+color of the footer will be dark teal.
+
+================
+Color Selection
+================
+
+Since the site is themed based on Flufflepuff, the site will be primarily pink, white, and teal. 
+Hex color values are stored and updated here.
+Light Pink:
+HTML code:	#FFE5EE
+RGB code:	R: 255 G: 229 B: 238
+HSV:	339.23° 10.2% 100%
+
+Dark Pink:
+HTML code:	#FEB3CD
+RGB code:	R: 254 G: 179 B: 205
+HSV:	339.2° 29.53% 99.61%
+
+Dark Teal:
+HTML code:	#037778
+RGB code:	R: 3 G: 119 B: 120
+HSV:	180.51° 97.5% 47.06%
+
+Light Teal:
+HTML code:	#42BFBF
+RGB code:	R: 66 G: 191 B: 191
+HSV:	180° 65.45% 74.9%
+
+Colors were gathered from imagecolorpicker.com
+
+================
+Home Page
+================
+
+The home page will consist of links directing to other places in the website, with short descriptions of what content you can find in each section of the website.
+
+Possible designs for this section could be a grid or row display.
+
+Section will have a white background. Each module shall consist of an image, decorative border, link to section, and a short description of the section. 
+
+================
+About Kim
+================
+
+Design ideas:
+Large, robust image of Kim with maybe a filter to make it more interesting. Positioned to the left and made very large.
+Right side is a mountain of text that describes what she does and how she does it.
+
+Centered image of kim on top of wall of text
+
+wall of text included:
+
+Supreme Overlord Tyrant Queen Kimmy Kim, Mother of Forklifts has been our fair ruler since the country's inception in 2014. She rose to power immediately after sitting on the barren land and puffing. This puff later became our national anthem. Without her guidance, this country would not be prestigious and prosperous. She has personally carried out over 1500 executions since becoming Supreme Overlord Tyrant Queen Kimmy Kim, more than Texas!
+
+Born in the ICOP, she was a reserved child with a keen interest in finance, accounting and rice cakes. Her love of rice cakes escalated to a point where she studied them day and night and found that they had incredible power. She used this power to carve out a slice of the world and as an artist would, use it as her canvas. From this place, the illegal country of puff was founded. She has been personally involved in every construction and technology project, executing half of the workers for each one. She graduated from the UICOP in 2016 with her B.S. in Finance. Her surviving classmates describe her as studious, structured and menacing (please don't execute me). 
+
+When she studied rice cakes, she learned that they could be used to create buildings. Using sushi as the foundation for the buildings, she was able to create cities of skyscrapers made of rice cakes. The first project using this discovery was the city's capital, where she is housed and executes people. Another city she created had been created only of sushi. This is where most of the executed population lives and are buried.
+
+================
+News
+================
+
+Include story about forklift races where kim honors stadium with presence. (also include in event section)
+
+The never-ending war with the Sushi city is going well.
+
+visit other news websites to see how they present their information
+
+table of recent articles on the left, popular articles from a certain section on right. main headline at the top.
+
+main article:kimmy kim voted best supreme.. once again
+after the entire population answered the single-answer poll "is kimmy kim the greatest supreme ty.." 
+
+recent articles:
+Rogue forklift goes wild on highway
+Property values of rice cakes rising
+Latch hook museum opening, Rice Cake City
+Kimmy Kim looking thoroughly pleased
+Big explosion at sushi factory
+ICOP Scientists discover new execution method
+
+featured articles:
+
+-forklift races 
+-never ending war with sushi city
+-nicky nick rolls his eyes first time !!!
+-Kimmy kim likes that and thinks that's talent!
+
+================
+Jobs
+================
+
+Qualifications must be love and worship kim and love/would like to work with forklifts.
+
+table display of current jobs, job description and application link (that obviously goes nowhere)
+
+-new web developer
+
+================
+Events
+================
+
+another table that displays event name, location, date, and a small description.
+
+================
+Government
+================
+
+Anywho, I would talk about how voting happens every Tuesday
+And I listen to my people most of the time
+The government also runs 24/7 and doesn't shut down for holidays or weekends
+wait what, we vote?
+i thought you just puff orders and somehow the country functions tongue emoticon
+(please don't execute me)
+
+For things like what I should eat for breakfast tongue emoticon
+Nothing important
+
+Oh oh, talk about my special task force, the pbbbhhhttt. They strike fear because they help me decide who to execute
+
+I wiggled my butt and it was so?
+
+"Meep" is originated from the tyrant queen's property being shy. She thought that was so cute, she made a language after it
+
+Display functions of government in cells like a grid with a brief description of their workings. rows are 1x2
+Do 2 column display, with one column giving the who (people, etc, images, whatever) and the righthand column giving the information aka the what
+
+Start with the constitution, make it single column that spans the width of the page and either type out the entire constitution or give a brief list of things
+Next, give the Supreme Overlord branch and it's current officeholder, describe functions in second column.
+Next, talk about the cabinet and each of their functions. two columns once again.
+
+=================
+Travel
+=================
+
+FAQ style page with links to other pages and answers all questions that one might have in order.

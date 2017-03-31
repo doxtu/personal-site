@@ -1,0 +1,127 @@
+/*TYPOGRAPHY*/
+
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+html{
+	font:16px Tahoma, sans-serif;
+}
+
+h1,h2,p,a{
+	font-weight:normal;
+}
+
+h1{
+	margin:0;
+	font-size:2rem;
+}
+
+h2{
+	font-size:1.15rem;
+	color:hsl(240,50%,60%);
+}
+
+p{
+	font-size:1rem;
+}
+
+a{
+	text-decoration:none;
+	color:hsl(240,100%,60%);
+}
+
+a:hover{
+	color:hsl(90,30%,40%);
+}
+
+a:visited{
+	color:hsl(240,75%,60%);
+}
+
+.main-head a{
+	font-size:0.85rem;
+}
+
+/*OUTER STRUCTURE*/
+
+body{
+  background:hsl(240,30%,10%);
+  padding:20px;
+}
+
+/*INNER STRUCTURE*/
+
+.inner{
+  width:60%;
+  margin:0 auto;
+  box-shadow:7px 7px 7px #000;
+  background:hsl(240,30%,90%);
+  border-radius:10px;
+}
+
+.main-head{
+	border-radius:10px 10px 0 0;
+}
+
+/*HEADER*/
+
+.main-head{
+  background:hsla(90,100%,40%,0.80);
+  padding:0.7rem;
+  vertical-align:middle;
+}
+
+.main-head #logo{
+  font:2.75rem Verdana sans-serif;
+}
+
+/*CONTENT*/
+
+.content{
+	padding:1.2rem;
+}
+
+.content section{
+	margin-top:2rem;
+}
+
+.content section:first-child{
+	margin-top:0;
+}
+
+.content h1{
+	border-bottom:2px solid hsl(240,100%,15%);
+	margin-bottom:0.8rem;
+}
+
+.content p{
+	margin-left:1rem;
+}
+
+/*FOOTER*/
+
+footer{
+	padding:1.2rem;
+}
+
+footer small{
+	display:block;
+}
+
+/*MOBILE*/
+
+@media screen and (max-width:750px){
+	html{font-size:14px;}
+}
+
+@media screen and (max-width:400px){
+	html{font-size:10px;}
+	
+	.inner{
+		width:95%;
+	}
+}
+
