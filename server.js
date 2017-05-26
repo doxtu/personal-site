@@ -4,7 +4,8 @@ var mysql = require('mysql');
 
 /* Getting all static files from this directory */
 app.use(express.static("public"));
-app.use("/icop",express.static("res/static/icop"));
+app.use("/icop",express.static("public/icop"));
+app.use("/lcis",express.static("public/lcis"));
 
 app.get("/mysql",function dbs(req,res){
 	let connection = mysql.createConnection({

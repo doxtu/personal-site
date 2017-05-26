@@ -1,0 +1,18 @@
+body{
+  background:black;
+  font:2.7vh "Courier New", Courier, monospace;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  height:98vh;
+}
+
+#terminal{
+  color:white;
+  padding:10px;
+}
+
+#message{
+  color:hsl(10,100%,50%);
+}
