@@ -8,7 +8,7 @@ app.use("/icop",express.static("res/static/icop"));
 
 app.get("/mysql",function dbs(req,res){
 	let connection = mysql.createConnection({
-		host: "gonzaleslabs.com",
+		host: "localhost",
 		user: "root",
 		password: "Testy321!",
 		database: "test"
