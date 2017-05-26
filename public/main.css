@@ -7,7 +7,7 @@
 }
 
 html{
-	font:16px "Courier New", sans-serif;
+	font:18px "Courier New", sans-serif;
 }
 
 h1,h2,p,a{
@@ -21,7 +21,7 @@ h1{
 
 h2{
 	font-size:1.15rem;
-	color:hsl(240,50%,100%);
+	color:hsl(240,50%,50%);
 }
 
 p{
@@ -30,25 +30,30 @@ p{
 
 a{
 	text-decoration:none;
-	color:hsl(240,100%,100%);
+	color:hsl(240,100%,50%);
 }
 
 a:hover{
-	color:hsl(90,30%,100%);
+	color:hsl(90,30%,50%);
 }
 
 a:visited{
-	color:hsl(240,75%,60%);
+	color:hsl(240,100%,50%);
 }
 
 .main-head a{
 	font-size:0.85rem;
+	color:hsl(240,100%,100%);
+}
+
+.main-head a:visited{
+	color:hsl(240,100%,100%);
 }
 
 /*OUTER STRUCTURE*/
 
 body{
-  background:hsl(111,30%,10%);
+  background:#fff;
   padding:20px;
 }
 
@@ -57,7 +62,7 @@ body{
 .inner{
   width:60%;
   margin:0 auto;
-  box-shadow:7px 7px 7px #000;
+  box-shadow:0px 2px 7px #000;
   background:hsl(240,30%,90%);
   border-radius:10px;
 }
@@ -69,13 +74,14 @@ body{
 /*HEADER*/
 
 .main-head{
-  background:hsla(90,100%,40%,0.80);
+  background:hsla(90,100%,0%,0.80);
   padding:0.7rem;
   vertical-align:middle;
 }
 
 .main-head #logo{
   font:2.75rem Verdana sans-serif;
+  color:hsl(240,0%,100%);
 }
 
 /*CONTENT*/
