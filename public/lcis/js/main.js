@@ -167,6 +167,10 @@ function submitHandler(submitted) {
 		case "pmsi":
 			break;
 		case "kmbl":
+			let xhr = new XMLHttpRequest();
+			xhr.open("GET", "/lcis/payments",false);
+			xhr.send(null);
+			console.log(req.responseText);
 			break;
 		case "ddcl":
 			//inputs

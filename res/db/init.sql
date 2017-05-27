@@ -1,0 +1,26 @@
+CREATE TABLE users(
+	user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO users VALUES(NULL,"Nick");
+INSERT INTO users VALUES(NULL,"Kim");
+
+CREATE TABLE payments(
+	pay_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	type INT NOT NULL,
+	month INT NOT NULL,
+	amount FLOAT NOT NULL
+);
+
+CREATE TABLE types(
+	code INT NOT NULL,
+	string VARCHAR(20) NOT NULL,
+	weight INT
+);
+
+INSERT INTO types VALUES(0000,"rent", 50);
+INSERT INTO types VALUES(0001,"internet",50);
+INSERT INTO types VALUES(0002,"spotify",50);
+INSERT INTO types VALUES(0003,"utilities",50);
+INSERT INTO types VALUES(2229,"other",100);

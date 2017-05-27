@@ -1,0 +1,14 @@
+Users table:
+
+prepopulate with kim and nick on server.
+
+has id, name
+
+payments table:
+
+has name, type, month, and amount
+
+types table:
+
+has code and name
+

@@ -17,10 +17,10 @@ app.get("/lcis/payments",function dbs(req,res){
 	
 	connection.connect();
 	
-	connection.query("SELECT * FROM kimmy",function(err,rows,fields){
+	connection.query("SELECT * FROM users",function(err,rows,fields){
 		if(err) throw err;
 		
-		res.send(rows[0].id,rows[0].name,rows[0].song);
+		res.send(rows[0].user_id,rows[0].name);
 	});
 	
 });

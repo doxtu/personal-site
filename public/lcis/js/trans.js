@@ -59,7 +59,7 @@ const blankgrid = [
     "   KMBL: ADD/EDIT BILL PAYMENT                                                  ",
     "   REMP: REMARK EDIT                                                            ",
     "   DDCL: DUE DATE CALCULATOR                                                    ",
-    "                                                                                ",
+    "   TYPE: ALLOWED PAYMENT TYPES                                                  ",
     "                                                                                ",
     "                                                                                ",
     "                                                                                ",
@@ -161,9 +161,37 @@ const blankgrid = [
     "                                                                                "
   ];
   
+  const type = [
+    "                                   ALLOWED PAYMENT TYPES                        ",
+    "                                                                                ",
+    "   |TYPE              |CODE              |                                      ",
+    "   |------------------|------------------|                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |                  |                  |                                      ",
+    "   |------------------|------------------|                                      ",
+    "                                                                                ",
+    "                                                                                ",
+    "                                                                                ",
+    "                                                                                ",
+    "   TRAN:****                                                                    ",
+    "                                                                                "
+  ];
+  
   var trans = {
     tubs: tubs,
     pmsi: pmsi,
     kmbl: kmbl,
 	ddcl: ddcl,
+	type: type
   };
