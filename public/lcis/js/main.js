@@ -167,10 +167,37 @@ function submitHandler(submitted) {
 		case "pmsi":
 			break;
 		case "kmbl":
-			let xhr = new XMLHttpRequest();
-			xhr.open("GET", "/lcis/payments",false);
-			xhr.send(null);
-			console.log(req.responseText);
+			//choose a set of options from the parameters BADU
+			let badu = input[0];
+			let type = input[1];
+			let amount = input[2];
+			let date = input[3];
+			let url = "/lcis/payments?";
+			
+			console.log(badu,type,amount,date,url);
+			
+			if(badu == 'B'){
+				 
+			}else if(badu == 'A' && type && amount && date){
+				let xhr = new XMLHttpRequest();
+				url += "type=" + type + "&amount=" + amount + "&date=" + date;
+				xhr.addEventListener("load",function ajaxHandle(err){
+					if(err){errorConsole.innerHTML = "ERROR HANDLING QUERY"; console.log(err); throw err;}
+					errorConsole.innerHTML = "DATABASE UPDATED";
+				});
+				xhr.open("POST",url,true);
+				xhr.send(null);
+			}else if(badu == 'D'){
+				
+			}else if(badu == 'U'){
+				
+			}
+			// let xhr = new XMLHttpRequest();
+			// xhr.addEventListener("load",function ajaxhandle(){
+				
+			// });
+			// xhr.open("GET", "/lcis/payments", true);
+			// xhr.send(null);
 			break;
 		case "ddcl":
 			//inputs
