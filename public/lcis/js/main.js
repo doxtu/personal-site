@@ -1,15 +1,18 @@
 var chartypes = {
 	_: "_",
-	"*": "_"
+	"*": "_",
+	"x": "_"
 };
 
 //state variables
 var curgrid = [];
 var curelt = null;
 var curtran = "tubs";
+var errorConsole = document.querySelector("#message");
 
 //state functions
 window.addEventListener("keydown", typeHandler);
+
 
 var grid = {
 generateR: function generateRandom() {
@@ -92,6 +95,7 @@ function selectElementHandler(e) {
 	curelt.style.background = "#000";
 	curelt.style.color = "#fff";
 	curelt = this;
+	// console.log("x",curelt.dataset.posX, "y", curelt.dataset.posY);
 	this.style.color = "#000";
 	this.style.background = "#fff";
 }
@@ -144,13 +148,107 @@ function typeHandler(e) {
 function submitHandler(submitted) {
 	submitted = submitted.toLowerCase();
 	let isTran = submitted in trans;
-
+	let subtran = curtran;
+	
 	if (isTran) {
 	  let kmsi = grid.make(trans[submitted.toLowerCase()]);
 	  curtran = submitted;
 	  grid.draw(kmsi);
 	  curelt = curgrid[0][0].elt;
 	  handleSpecialCases("Tab");
+	  return;
+	}
+	
+	let input = scanner(curgrid);
+	
+	switch(subtran){
+		case "tubs":
+			break;
+		case "pmsi":
+			break;
+		case "kmbl":
+			break;
+		case "ddcl":
+			//inputs
+			let invoice = Number(input[0]);
+			let termpay = Number(input[1]);
+			let startd = parsed(input[2]);
+			let paid = Number(input[3]);
+			
+			if(!(invoice && termpay && startd && paid)) errorConsole.innerHTML = "NOT ALL INPUTS ENTERED";
+			
+			let due = dueDate(invoice,termpay,startd,paid).toLocaleDateString();
+			let balance = accounting.formatMoney(invoice - paid);
+			
+			//print due at x=27,y=7
+			//print balance at x=27,y=8
+			
+			//clear out the print area
+			for(let i = 7; i <9; i++){
+				for(let j=27; j<80; j++){
+					curgrid[i][j].elt.innerHTML = "&nbsp";
+				}
+			}
+			
+			//populate the print areas with a new string
+			for(var i in new String(due))
+				curgrid[7][27+Number(i)].elt.innerHTML = due[i];
+			for(var j in new String(balance))
+				curgrid[8][27+Number(j)].elt.innerHTML = balance[j];
+			break;
+		default:
+			console.log("No matching case");
+	}
+	
+	function parsed(str){
+		let mo = Number(str[0] + str[1]) - 1;
+		let day = Number(str[2] + str[3]);
+		let yr = Number(str[4] + str[5] + str[6] + str[7]);
+		
+		return new Date(yr, mo, day);
+	}
+	
+	function dueDate(totalInvoice,termPayment,startDate,totalPaid){
+		function addMonths(dateObj, num) {
+			var currentMonth = dateObj.getMonth() + dateObj.getFullYear() * 12;
+			dateObj.setMonth(dateObj.getMonth() + num);
+			var diff = dateObj.getMonth() + dateObj.getFullYear() * 12 - currentMonth;
+			
+			// If don't get the right number, set date to 
+			// last day of previous month
+			if (diff != num) {
+				dateObj.setDate(0);
+			} 
+			return dateObj;
+		}	
+
+		var monthsToPayTotal = totalInvoice/termPayment;
+		var monthsToAddFromStart = Math.round(totalPaid/termPayment);
+		
+		var nextDue = addMonths(startDate,monthsToAddFromStart);
+		return nextDue;
+	}
+	
+	function scanner(grid){
+		let ret = [];
+		
+		for(let i = 0; i<24;i++){
+			let recording = false;
+			let sub = "";
+			for(let j=0; j<80;j++){
+				if(grid[i][j].submittable){
+					recording = true;
+				}else{
+					recording = false;
+				}
+				if(recording && grid[i][j].elt.innerHTML != "_")
+					sub += grid[i][j].elt.innerHTML;
+			}
+			if(sub != "")
+				ret.push(sub);
+		}
+		
+		return ret;
 	}
 }
 
@@ -184,10 +282,8 @@ function handleSpecialCases(key) {
 		break;
 	  case "Enter":
 		if (curgrid[Number(elty)][Number(eltx)].submittable) {
-		  let submitted = "";
 		  let compare = true;
 		  let iterator = 0;
-		  let rightEnd = 0;
 		  let leftEnd = 0;
 
 		  //get left end position
@@ -201,9 +297,11 @@ function handleSpecialCases(key) {
 		  }
 
 		  //gather string
+		  let submitted = "";
 		  compare = true;
 		  iterator = 0;
 		  while (compare) {
+			  
 			if (curgrid[Number(elty)][leftEnd + iterator].submittable) {
 			  submitted +=
 				curgrid[Number(elty)][leftEnd + iterator].elt.innerHTML;
@@ -236,7 +334,7 @@ function handleSpecialCases(key) {
 		  curgrid[elty][eltx].change &&
 		  curgrid[elty][Number(eltx) + 1].change
 		) {
-		  curelt.innerHTML = "_";
+		  curelt.innerHTML = " ";
 		  selectElementHandler.call(curgrid[elty][Number(eltx) + 1].elt);
 		}
 		break;

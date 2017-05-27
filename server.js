@@ -7,7 +7,7 @@ app.use(express.static("public"));
 app.use("/icop",express.static("public/icop"));
 app.use("/lcis",express.static("public/lcis"));
 
-app.get("/mysql",function dbs(req,res){
+app.get("/lcis/payments",function dbs(req,res){
 	let connection = mysql.createConnection({
 		host: "localhost",
 		user: "root",
