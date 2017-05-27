@@ -277,7 +277,7 @@ function handleSpecialCases(key) {
 }
 
 function init() {
-	var eltgrid = grid.make(frontscreen);
+	var eltgrid = grid.make(tubs);
 	grid.draw(eltgrid);
 	curelt = curgrid[0][0].elt;
 	handleSpecialCases("Tab");
