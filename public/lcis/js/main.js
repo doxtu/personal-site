@@ -13,7 +13,6 @@ var errorConsole = document.querySelector("#message");
 //state functions
 window.addEventListener("keydown", typeHandler);
 
-
 var grid = {
 generateR: function generateRandom() {
   let ret = [];
@@ -156,6 +155,7 @@ function submitHandler(submitted) {
 	  grid.draw(kmsi);
 	  curelt = curgrid[0][0].elt;
 	  handleSpecialCases("Tab");
+	  errorConsole.innerHTML = "IN LOVING MEMORY OF LCIS :&#40";
 	  return;
 	}
 	
@@ -171,33 +171,34 @@ function submitHandler(submitted) {
 			let badu = input[0];
 			let type = input[1];
 			let amount = input[2];
-			let date = input[3];
-			let url = "/lcis/payments?";
-			
-			console.log(badu,type,amount,date,url);
+			let month = input[3];
+			let url = "/lcis/payments";
+			let params = "type=" + type + "&amount=" + amount + "&month=" + month;
 			
 			if(badu == 'B'){
 				 
-			}else if(badu == 'A' && type && amount && date){
+			}else if(badu == 'A' && type && amount && month){
 				let xhr = new XMLHttpRequest();
-				url += "type=" + type + "&amount=" + amount + "&date=" + date;
-				xhr.addEventListener("load",function ajaxHandle(err){
-					if(err){errorConsole.innerHTML = "ERROR HANDLING QUERY"; console.log(err); throw err;}
-					errorConsole.innerHTML = "DATABASE UPDATED";
-				});
+				
+				xhr.onreadystatechange = function handler(){
+					if(xhr.readyState == 4){
+						if(xhr.status == 200){
+							errorConsole.innerHTML = "RECORD UPDATED";	
+						}else if(xhr.status == 400){
+							errorConsole.innerHTML = "RECORD ALREADY EXISTS";
+						}else{
+							errorConsole.innerHTML = "ERROR INCURRED";
+						}					
+					}
+				}
 				xhr.open("POST",url,true);
-				xhr.send(null);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhr.send(params);
 			}else if(badu == 'D'){
 				
 			}else if(badu == 'U'){
 				
 			}
-			// let xhr = new XMLHttpRequest();
-			// xhr.addEventListener("load",function ajaxhandle(){
-				
-			// });
-			// xhr.open("GET", "/lcis/payments", true);
-			// xhr.send(null);
 			break;
 		case "ddcl":
 			//inputs

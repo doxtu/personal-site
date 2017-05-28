@@ -1,5 +1,7 @@
 var express = require("express");
 var app = express();
+var bodyParser = require("body-parser");
+var multer = require("multer");
 var mysql = require('mysql');
 var url = require('url');
 
@@ -28,6 +30,10 @@ app.get("/lcis/payments",function dbs(req,res){
 	
 });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+//Adding a payment to the database
 app.post("/lcis/payments",function dbHandler(req,res){
 	let connection = mysql.createConnection({
 		host: "localhost",
@@ -35,22 +41,63 @@ app.post("/lcis/payments",function dbHandler(req,res){
 		password: "Testy321!",
 		database: "test"
 	});
-	let query = url.parse(req.url,true).query;
+	let query = req.body;
+	// let query = url.parse(req.params,true).query;
 	let type = Number(query.type);
 	let amount = Number(query.amount);
-	let date = Number(query.date);
+	let month = Number(query.month);
 	
-	connection.connect();
+	//queries
+	let sql0 = "SELECT types.code FROM types";
+	let sql1 = "SELECT payments.month,payments.type FROM payments";
+	let sql2 = "INSERT INTO payments VALUES(" + null + "," + connection.escape(type) + "," + connection.escape(month) + "," + connection.escape(amount) + ")";
 	
-	let sql = "INSERT INTO payments VALUES(" + null + "," + connection.escape(type) + "," + connection.escape(date) + "," + connection.escape(amount) + ")";
-	console.log("\n\n\n\n\n"+sql);
-	connection.query(sql,function(err,rows,fields){
-		if(err) throw err;
-		console.log(rows);
-		res.status(200).send("OK");
-	});
-	
-	connection.end();
+	//check if the submitted info exists in the tables and reject if it already exists.
+	{
+		connection.connect();
+		//two flags for the sql queries to determine if the submitted info already exists
+		let found = false;
+		let exist = false;
+		
+		Promise.all([
+			new Promise(function(s,f){
+				//Does the submitted code exist?
+				connection.query(sql0,function(err,rows,fields){
+					if(err) f();
+					exist = rows.reduce(function(acc,row){
+						return row.code == type || acc;
+					},exist);
+					s();
+				});
+			}),
+			new Promise(function(s,f){
+				//Does the submitted month and type exist in the payments db?
+				connection.query(sql1,function(err,rows,fields){
+					if(err) f();
+					rows.forEach(function querySearch(row){
+						if(row.month == month && row.type == type)
+							found = true;
+					});
+					s();
+				});	
+			})
+		])
+		.then(function(){
+			if(!(found && exist)){	
+				connection.query(sql2,function(err,rows,fields){
+					if(err) return res.status(500).send("SERVER ERROR");
+					connection.end();
+					res.status(200).send("OK");
+				});
+			}else{
+				res.status(400).send("RECORD ALREADY EXISTS");
+			}
+		})
+		.catch(function(){
+			connection.end();
+			res.status(500).send("SERVER ERROR");
+		});
+	}
 });
 
 /*set port to 80 when pushing to master*/
