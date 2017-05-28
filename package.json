@@ -19,8 +19,12 @@
   "homepage": "https://github.com/doxtu/personal-site#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "multer": "^1.3.0",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0",
     "pm2": "^2.4.2"
   }
 }

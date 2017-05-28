@@ -193,5 +193,6 @@ const blankgrid = [
     pmsi: pmsi,
     kmbl: kmbl,
 	ddcl: ddcl,
-	type: type
+	type: type,
+	logo:logo
   };

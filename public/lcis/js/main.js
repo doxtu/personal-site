@@ -162,74 +162,123 @@ function submitHandler(submitted) {
 	let input = scanner(curgrid);
 	
 	switch(subtran){
+		case "logo":
+			{
+				
+			}
+			break;
 		case "tubs":
 			break;
 		case "pmsi":
-			break;
-		case "kmbl":
-			//choose a set of options from the parameters BADU
-			let badu = input[0];
-			let type = input[1];
-			let amount = input[2];
-			let month = input[3];
-			let url = "/lcis/payments";
-			let params = "type=" + type + "&amount=" + amount + "&month=" + month;
-			
-			if(badu == 'B'){
-				 
-			}else if(badu == 'A' && type && amount && month){
+			{
+				//start pmsi block, getting current payments for submitted month
+				let month = input[0];
+				let url = "/lcis/payments?month=" + month;
 				let xhr = new XMLHttpRequest();
-				
 				xhr.onreadystatechange = function handler(){
 					if(xhr.readyState == 4){
 						if(xhr.status == 200){
-							errorConsole.innerHTML = "RECORD UPDATED";	
+							let rows = JSON.parse(xhr.responseText);
+							let due = 0;
+							//print type at x:4,y:4
+							//print amount at x:23,y:4
+							//amount due at x:56, y:2
+							rows.forEach(function printrows(row,i){
+								let type = row.type;
+								let amount = accounting.formatMoney(row.amount);
+								due += row.amount;
+								clearTo(4,4+i,21,4+i);
+								clearTo(23,4+i,40,4+i);
+								printAmount(4,4+i,type);
+								printAmount(23,4+i,amount);
+							});
+							due = accounting.formatMoney(due/2);
+							clearTo(56,2,79,2);
+							printAmount(56,2,due);
 						}else if(xhr.status == 400){
-							errorConsole.innerHTML = "RECORD ALREADY EXISTS";
+							errorConsole.innerHTML = "BAD REQUEST";
 						}else{
-							errorConsole.innerHTML = "ERROR INCURRED";
-						}					
+							
+						}
 					}
 				}
-				xhr.open("POST",url,true);
-				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-				xhr.send(params);
-			}else if(badu == 'D'){
+				xhr.open("GET",url,true);
+				xhr.send(null);
+				//end pmsi block
+			}
+			break;
+		case "kmbl":
+			{
+				//start kmbl: choose a set of options from the parameters BADU
+				let badu = input[0];
+				let type = input[1];
+				let amount = input[2];
+				let month = input[3];
+				let url = "/lcis/payments";
+				let params = "type=" + type + "&amount=" + amount + "&month=" + month;
 				
-			}else if(badu == 'U'){
-				
+				if(badu == 'B'){
+					 
+				}else if(badu == 'A' && type && amount && month){
+					let xhr = new XMLHttpRequest();
+					
+					xhr.onreadystatechange = function handler(){
+						if(xhr.readyState == 4){
+							if(xhr.status == 200){
+								errorConsole.innerHTML = "RECORD UPDATED";	
+							}else if(xhr.status == 400){
+								errorConsole.innerHTML = "RECORD ALREADY EXISTS";
+							}else{
+								errorConsole.innerHTML = "ERROR INCURRED";
+							}					
+						}
+					}
+					xhr.open("POST",url,true);
+					xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					xhr.send(params);
+				}else if(badu == 'D'){
+					
+				}else if(badu == 'U'){
+					
+				}
+				//end kmbl
 			}
 			break;
 		case "ddcl":
-			//inputs
-			let invoice = Number(input[0]);
-			let termpay = Number(input[1]);
-			let startd = parsed(input[2]);
-			let paid = Number(input[3]);
-			
-			if(!(invoice && termpay && startd && paid)) errorConsole.innerHTML = "NOT ALL INPUTS ENTERED";
-			
-			let due = dueDate(invoice,termpay,startd,paid).toLocaleDateString();
-			let balance = accounting.formatMoney(invoice - paid);
-			
-			//print due at x=27,y=7
-			//print balance at x=27,y=8
-			
-			//clear out the print area
-			for(let i = 7; i <9; i++){
-				for(let j=27; j<80; j++){
-					curgrid[i][j].elt.innerHTML = "&nbsp";
-				}
+			{
+				//inputs
+				let invoice = Number(input[0]);
+				let termpay = Number(input[1]);
+				let startd = parsed(input[2]);
+				let paid = Number(input[3]);
+				
+				if(!(invoice && termpay && startd && paid)) errorConsole.innerHTML = "NOT ALL INPUTS ENTERED";
+				
+				let due = dueDate(invoice,termpay,startd,paid).toLocaleDateString();
+				let balance = accounting.formatMoney(invoice - paid);
+				
+				//print due at x=27,y=7
+				//print balance at x=27,y=8
+				clearTo(27,7,80,9);
+				printAmount(27,7,due);
+				printAmount(27,8,balance);
 			}
-			
-			//populate the print areas with a new string
-			for(var i in new String(due))
-				curgrid[7][27+Number(i)].elt.innerHTML = due[i];
-			for(var j in new String(balance))
-				curgrid[8][27+Number(j)].elt.innerHTML = balance[j];
 			break;
 		default:
 			console.log("No matching case");
+	}
+	
+	function printAmount(x,y,arr){
+		for(var i in new String(arr))
+			curgrid[y][x+Number(i)].elt.innerHTML = new String(arr)[i];
+	}
+	
+	function clearTo(xstart,ystart,xend,yend){
+		for(let i = ystart; i <yend; i++){
+					for(let j=xstart; j<xend; j++){
+						curgrid[i][j].elt.innerHTML = "&nbsp";
+					}
+		}
 	}
 	
 	function parsed(str){

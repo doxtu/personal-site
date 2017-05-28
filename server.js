@@ -4,11 +4,34 @@ var bodyParser = require("body-parser");
 var multer = require("multer");
 var mysql = require('mysql');
 var url = require('url');
+var passport = require('passport');
+var BasicStrategy = require('passport-local').Strategy;
+
 
 /* Getting all static files from this directory */
 app.use(express.static("public"));
 app.use("/icop",express.static("public/icop"));
 app.use("/lcis",express.static("public/lcis"));
+
+/*Authentication middleware for LCIS*/
+app.use(passport.initialize());
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+app.get("/lcis/login",passport.authenticate('local',{successRedirect:"/lcis",failureRedirect:"/lcis/login",failureFlash:true});
 
 app.get("/lcis/payments",function dbs(req,res){
 	let connection = mysql.createConnection({
@@ -17,12 +40,18 @@ app.get("/lcis/payments",function dbs(req,res){
 		password: "Testy321!",
 		database: "test"
 	});
+	
 	let query = url.parse(req.url,true).query;
+	let month = query.month;
+	
+	if(!month) return;
+	
+	let sql0 = "SELECT payments.type,payments.amount FROM payments WHERE payments.month = " + month;
 	
 	connection.connect();
 	
-	connection.query("SELECT * FROM users",function(err,rows,fields){
-		if(err) throw err;	
+	connection.query(sql0,function(err,rows,fields){
+		if(err) {res.status(500).send("QUERY FAILED"); return;}	
 		res.status(200).send(rows);
 	});
 	
@@ -59,13 +88,16 @@ app.post("/lcis/payments",function dbHandler(req,res){
 		let found = false;
 		let exist = false;
 		
+		//preconditions to failure
+		let conditions = (month < 1 || month > 12);
+		
 		Promise.all([
 			new Promise(function(s,f){
 				//Does the submitted code exist?
 				connection.query(sql0,function(err,rows,fields){
 					if(err) f();
 					exist = rows.reduce(function(acc,row){
-						return row.code == type || acc;
+						return (row.code == type) || acc;
 					},exist);
 					s();
 				});
@@ -75,7 +107,7 @@ app.post("/lcis/payments",function dbHandler(req,res){
 				connection.query(sql1,function(err,rows,fields){
 					if(err) f();
 					rows.forEach(function querySearch(row){
-						if(row.month == month && row.type == type)
+						if((row.month == month && row.type == type) && type != 2229)
 							found = true;
 					});
 					s();
@@ -83,7 +115,7 @@ app.post("/lcis/payments",function dbHandler(req,res){
 			})
 		])
 		.then(function(){
-			if(!(found && exist)){	
+			if(!found && exist && !conditions){	
 				connection.query(sql2,function(err,rows,fields){
 					if(err) return res.status(500).send("SERVER ERROR");
 					connection.end();
