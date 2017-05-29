@@ -35,7 +35,7 @@ const blankgrid = [
     "                                                                                ",
     "      READ-ONLY:                                                                ",
     "      USERNAME: RDOL                                                            ",
-    "      PASSWORD: PASSWORD (ALL CAPS)                                             ",
+    "      PASSWORD: PASSWORD                                                        ",
     "                                                                                ",
     "                                                                                ",
     "                                                                                ",

@@ -5,35 +5,48 @@ var multer = require("multer");
 var mysql = require('mysql');
 var url = require('url');
 var passport = require('passport');
-var BasicStrategy = require('passport-local').Strategy;
+var session = require("express-session");
+var LocalStrategy = require('passport-local').Strategy;
 var connection = require("./res/db/db");
+var bcrypt = require("bcrypt");
+const saltRounds = 8;
 
-
-/* Getting all static files from this directory */
+/*Middleware*/
 app.use(express.static("public"));
 app.use("/icop",express.static("public/icop"));
 app.use("/lcis",express.static("public/lcis"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(passport.initialize());
+// app.use(passport.session());
 
 /*Authentication middleware for LCIS*/
-// app.use(passport.initialize());
+passport.use(new LocalStrategy({
+	usernameField: "user",
+	passwordField: "pass"
+},
+  function(user, pass, done) {
+	user = user.toLowerCase();
+	pass = pass.toLowerCase();
+    connection.query("SELECT users.name,users.auth_string FROM users WHERE users.name = ?", [user],function(err,rows,fields){
+		if(rows && rows.length == 0){return done(null,false);}
+		bcrypt.compare(pass,rows[0].auth_string,function(err,res){
+			if(err) throw err;
+			if(res){
+				return done(null,rows[0].name);
+			}else{
+				return done(null,false);
+			}
+		});
+	});
+}));
 
-// passport.use(new LocalStrategy(
-  // function(username, password, done) {
-    // User.findOne({ username: username }, function(err, user) {
-      // if (err) { return done(err); }
-      // if (!user) {
-        // return done(null, false, { message: 'Incorrect username.' });
-      // }
-      // if (!user.validPassword(password)) {
-        // return done(null, false, { message: 'Incorrect password.' });
-      // }
-      // return done(null, user);
-    // });
-  // }
-// ));
 
-// app.get("/lcis/login",passport.authenticate('local',{successRedirect:"/lcis",failureRedirect:"/lcis/login",failureFlash:true});
+app.post('/lcis/login',passport.authenticate("local",{session:false}),function(req,res){
+	res.status(200).send("Good job!");
+}); 
 
+  
 app.get("/lcis/payments",function dbs(req,res){
 	let query = url.parse(req.url,true).query;
 	let month = query.month;
@@ -47,9 +60,6 @@ app.get("/lcis/payments",function dbs(req,res){
 		res.status(200).send(rows);
 	});
 });
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
 
 //Adding a payment to the database
 app.post("/lcis/payments",function dbHandler(req,res){
@@ -100,7 +110,6 @@ app.post("/lcis/payments",function dbHandler(req,res){
 			if(!found && exist && !conditions){	
 				connection.query(sql2,function(err,rows,fields){
 					if(err) return res.status(500).send("SERVER ERROR");
-					connection.end();
 					res.status(200).send("OK");
 				});
 			}else{
