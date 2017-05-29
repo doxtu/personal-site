@@ -123,4 +123,4 @@ app.post("/lcis/payments",function dbHandler(req,res){
 });
 
 /*set port to 80 when pushing to master*/
-app.listen(80);
+app.listen(8000);

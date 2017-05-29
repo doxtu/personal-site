@@ -6,7 +6,8 @@ module.exports = (function(){
 		user: process.env.DBUSER,
 		password: process.env.DBPASS,
 		database: process.env.DBNAME,
-		socketPath:'/var/run/mysqld/mysqld.sock'
+		//uncomment this when pushing prod
+		// socketPath:'/var/run/mysqld/mysqld.sock'
 	});
 	
 	connection.connect();
