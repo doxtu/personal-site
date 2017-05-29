@@ -6,6 +6,7 @@ var mysql = require('mysql');
 var url = require('url');
 var passport = require('passport');
 var BasicStrategy = require('passport-local').Strategy;
+var connection = require("./res/db/db");
 
 
 /* Getting all static files from this directory */
@@ -14,33 +15,26 @@ app.use("/icop",express.static("public/icop"));
 app.use("/lcis",express.static("public/lcis"));
 
 /*Authentication middleware for LCIS*/
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
+// passport.use(new LocalStrategy(
+  // function(username, password, done) {
+    // User.findOne({ username: username }, function(err, user) {
+      // if (err) { return done(err); }
+      // if (!user) {
+        // return done(null, false, { message: 'Incorrect username.' });
+      // }
+      // if (!user.validPassword(password)) {
+        // return done(null, false, { message: 'Incorrect password.' });
+      // }
+      // return done(null, user);
+    // });
+  // }
+// ));
 
-app.get("/lcis/login",passport.authenticate('local',{successRedirect:"/lcis",failureRedirect:"/lcis/login",failureFlash:true});
+// app.get("/lcis/login",passport.authenticate('local',{successRedirect:"/lcis",failureRedirect:"/lcis/login",failureFlash:true});
 
 app.get("/lcis/payments",function dbs(req,res){
-	let connection = mysql.createConnection({
-		host: "localhost",
-		user: "root",
-		password: "Testy321!",
-		database: "test"
-	});
-	
 	let query = url.parse(req.url,true).query;
 	let month = query.month;
 	
@@ -48,15 +42,10 @@ app.get("/lcis/payments",function dbs(req,res){
 	
 	let sql0 = "SELECT payments.type,payments.amount FROM payments WHERE payments.month = " + month;
 	
-	connection.connect();
-	
 	connection.query(sql0,function(err,rows,fields){
 		if(err) {res.status(500).send("QUERY FAILED"); return;}	
 		res.status(200).send(rows);
 	});
-	
-	connection.end();
-	
 });
 
 app.use(bodyParser.json());
@@ -64,12 +53,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //Adding a payment to the database
 app.post("/lcis/payments",function dbHandler(req,res){
-	let connection = mysql.createConnection({
-		host: "localhost",
-		user: "root",
-		password: "Testy321!",
-		database: "test"
-	});
 	let query = req.body;
 	// let query = url.parse(req.params,true).query;
 	let type = Number(query.type);
@@ -83,7 +66,6 @@ app.post("/lcis/payments",function dbHandler(req,res){
 	
 	//check if the submitted info exists in the tables and reject if it already exists.
 	{
-		connection.connect();
 		//two flags for the sql queries to determine if the submitted info already exists
 		let found = false;
 		let exist = false;
@@ -126,7 +108,6 @@ app.post("/lcis/payments",function dbHandler(req,res){
 			}
 		})
 		.catch(function(){
-			connection.end();
 			res.status(500).send("SERVER ERROR");
 		});
 	}

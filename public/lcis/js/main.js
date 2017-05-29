@@ -275,9 +275,9 @@ function submitHandler(submitted) {
 	
 	function clearTo(xstart,ystart,xend,yend){
 		for(let i = ystart; i <yend; i++){
-					for(let j=xstart; j<xend; j++){
-						curgrid[i][j].elt.innerHTML = "&nbsp";
-					}
+			for(let j=xstart; j<xend; j++){
+				curgrid[i][j].elt.innerHTML = "&nbsp";
+			}
 		}
 	}
 	
