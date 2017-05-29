@@ -1,0 +1,8 @@
+When pushing to master, perform these steps
+
+-add .env file
+-add socket option and point it to .sock in db.js
+-install mysql-server again if it didn't work
+-python is necessary to run bcrypt, ensure its installation
+-no more users should have to be added, db already contains them
+
