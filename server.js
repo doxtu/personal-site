@@ -64,7 +64,6 @@ app.get("/lcis/payments",function dbs(req,res){
 //Adding a payment to the database
 app.post("/lcis/payments",function dbHandler(req,res){
 	let query = req.body;
-	// let query = url.parse(req.params,true).query;
 	let type = Number(query.type);
 	let amount = Number(query.amount);
 	let month = Number(query.month);
@@ -120,6 +119,78 @@ app.post("/lcis/payments",function dbHandler(req,res){
 			res.status(500).send("SERVER ERROR");
 		});
 	}
+});
+
+//delete a payment from database
+app.delete("/lcis/payments",function(req,res){
+	let query = req.body;
+	let type = Number(query.type);
+	let amount = Number(query.amount);
+	let month = Number(query.month);
+	
+	//sql queries
+	//first verify that the payment to delete exists, and then delete it;
+	let sql0 = "SELECT * FROM payments WHERE type = ? AND amount = ? AND month = ?";
+	let sql1 = "DELETE FROM payments WHERE type = ? AND month = ? AND amount = ?";
+	
+	//payments
+	let found = false;
+	
+	new Promise(function(s,f){
+		connection.query(sql0,[type,amount,month],function(err,rows,fields){
+			if (err) f();
+			if(rows.length > 0) found = true;
+			s();
+		});
+	})
+	.then(function(){
+		if(found){
+			connection.query(sql1,[type,month,amount],function(err,rows,fields){
+				if(err) throw err;
+				res.status(200).send("RECORD DELETED");
+			});			
+		}else{
+			res.status(400).send("CANNOT FIND RECORD");
+		}
+	})
+	.catch(function(){
+		res.status(500).send("SERVER ERROR");
+	});
+});
+
+app.put("/lcis/payments",function(req,res){
+	let query = req.body;
+	let type = Number(query.type);
+	let amount = Number(query.amount);
+	let month = Number(query.month);
+	
+	let sql0 = "SELECT * FROM payments WHERE payments.type = ? AND payments.month = ?";
+	let sql1 = "UPDATE payments SET payments.amount = ? WHERE payments.type = ? AND payments.month = ?";
+	
+	let found = false;
+	
+	new Promise(function(s,f){
+		connection.query(sql0,[type,month],function(err,rows,fields){
+			if (err) f();
+			if(rows.length > 0) found = true;
+			s();
+		});
+	})
+	.then(function(){
+		if(found){
+			connection.query(sql1,[amount,type,month],function(err,rows,fields){
+				if(err) throw err;
+				res.status(200).send("RECORD DELETED");
+			});			
+		}else{
+			res.status(400).send("CANNOT FIND RECORD");
+		}		
+	})
+	.catch(function(){
+		res.status(500).send("SERVER ERROR");
+	});
+	
+	
 });
 
 /*set port to 80 when pushing to master*/

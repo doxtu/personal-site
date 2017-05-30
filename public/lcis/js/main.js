@@ -260,9 +260,37 @@
 						xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 						xhr.send(params);
 					}else if(badu == 'D'){
-						
+						let xhr = new XMLHttpRequest();
+						let url = "/lcis/payments";
+						xhr.onreadystatechange = function handler(){
+							if(xhr.readyState == 4){
+								if(xhr.status==200)
+									errorConsole.innerHTML = "RECORD DELETED! :)";
+								else if(xhr.status==400)
+									errorConsole.innerHTML = "RECORD DOES NOT EXIST";
+								else
+									errorConsole.innerHTML = "SERVER ERROR";
+							}
+						}
+						xhr.open("DELETE",url,true);
+						xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+						xhr.send(params);
 					}else if(badu == 'U'){
-						
+						let xhr = new XMLHttpRequest();
+						let url = "/lcis/payments";
+						xhr.onreadystatechange = function handler(){
+							if(xhr.readyState == 4){
+								if(xhr.status==200)
+									errorConsole.innerHTML = "RECORD UPDATED! :)";
+								else if(xhr.status==400)
+									errorConsole.innerHTML = "RECORD DOES NOT EXIST";
+								else
+									errorConsole.innerHTML = "SERVER ERROR";
+							}
+						}
+						xhr.open("PUT",url,true);
+						xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+						xhr.send(params);
 					}
 					//end kmbl
 				}

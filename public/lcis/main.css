@@ -13,6 +13,17 @@ body{
   padding:10px;
 }
 
-#message{
+#message,
+#mobile{
   color:hsl(10,100%,50%);
+}
+
+/*MOBILE*/
+
+@media screen and (max-width:750px){ 
+	body{font-size:2vh;}
+} 
+
+@media screen and (max-width:400px){
+	body{font-size:1vh;}
 }

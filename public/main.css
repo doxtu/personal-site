@@ -119,15 +119,15 @@ footer small{
 
 /*MOBILE*/
 
-@media screen and (max-width:750px){
+@media screen and (max-width:750px){ 
 	html{font-size:14px;}
-}
+} 
 
 @media screen and (max-width:400px){
 	html{font-size:10px;}
 	
 	.inner{
 		width:95%;
-	}
+	 } 
 }
 
