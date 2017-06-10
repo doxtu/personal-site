@@ -7,7 +7,8 @@
 }
 
 html{
-	font:18px Tahoma, sans-serif;
+	font:18px Calibri, sans-serif;
+	line-height:1.7rem;
 }
 
 h1,h2,p,a{
@@ -101,6 +102,11 @@ body{
 .content h1{
 	border-bottom:2px solid hsl(240,100%,15%);
 	margin-bottom:0.8rem;
+	padding-bottom:0.3rem;
+}
+
+.content h2 a{
+	color:hsl(240,100%,60%);
 }
 
 .content p{
@@ -119,15 +125,14 @@ footer small{
 
 /*MOBILE*/
 
-@media screen and (max-width:750px){ 
+@media screen and (max-width:750px){
 	html{font-size:14px;}
-} 
+}
 
 @media screen and (max-width:400px){
 	html{font-size:10px;}
-	
+
 	.inner{
 		width:95%;
-	 } 
+	 }
 }
-
