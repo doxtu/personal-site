@@ -1,9 +1,6 @@
 When pushing to master, perform these steps
 
 -update .env file
--sudo npm install bcrypt
+-sudo npm install && sudo npm install bcrypt
 -add socket option and point it to .sock in db.js
 -install mysql-server again if it didn't work
--python is necessary to run bcrypt, ensure its installation
--no more users should have to be added, db already contains them
--change server port to port 80
