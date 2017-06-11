@@ -8,7 +8,7 @@
 		<link rel ="stylesheet" href="normalize.css">
 		<link rel ="stylesheet" href="main.css">
 	</head>
-	
+
 	<body>
 
 		<div class="inner">
@@ -20,7 +20,7 @@
 					<a href="https://twitter.com/smashnwg" target="_blank">twitter</a>
 				</nav>
 			</header>
-			
+
 			<div class="content">
 				<section class = "finished-projects">
 					<h1>Output</h1>
@@ -45,13 +45,22 @@
 						<p>A farewell tribute and lookalike to the departing terminal CIS at work.</p>
 					</div>
 				</section>
+
+				<section class = "email-form">
+					<h1>Contact</h1>
+					<form method="POST" action="/message">
+						<input type="text" name="person" placeholder="Jane Doe">
+						<input type="email" name="email" placeholder="yourname@domain.com">
+						<textarea type="text" name="message" placeholder="Message here..."></textarea>
+						<input type="submit" name="sub" value="send">
+					</form>
+				</section>
 			</div>
-			
+
 			<footer class="main-footer">
-				<small>Inquiries: nickwgonzales@gmail.com</small>
-				<small>&copy; 2017</small>
+				<small>&copy;Nick Gonzales 2017</small>
 			</footer>
 		</div>
-		
+
 	</body>
 </html>
