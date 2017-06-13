@@ -1,9 +1,8 @@
-# =========================
-# User Defined
-# =========================
-
 #Hidden environment variables
 .env
 
 #paths
 node_modules/
+
+#Privatespookystuff
+emailhandler.json
