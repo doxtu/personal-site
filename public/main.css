@@ -127,6 +127,13 @@ form textarea{
 	height:5rem;
 }
 
+.email-form p{
+	height:1rem;
+	padding-left:0;
+	margin-left:0;
+	color:red;
+}
+
 /*FOOTER*/
 
 footer{
