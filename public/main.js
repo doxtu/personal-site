@@ -7,10 +7,12 @@ mainform.addEventListener("submit",e=>{
 	let name = form[0].value || "";
 	let email = form[1].value || "";
 	let message = form[2].value || "";
+/*
 	if(message === ""){
 		emailnotify.innerText = "Please enter a message.";
 		return;
 	}
+*/
 	let params = "person="+name+"&email="+email+"&message="+message;
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
