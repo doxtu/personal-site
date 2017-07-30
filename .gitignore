@@ -3,6 +3,8 @@
 
 #paths
 node_modules/
+public/.well-known/
+notes
 
 #Privatespookystuff
 emailhandler.json
