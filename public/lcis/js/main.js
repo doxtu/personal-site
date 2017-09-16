@@ -158,6 +158,7 @@
 		  curelt = curgrid[0][0].elt;
 		  handleSpecialCases("Tab");
 		  errorConsole.innerHTML = "IN LOVING MEMORY OF LCIS :&#40";
+		  if(curtran === "type") loadTypes();
 		  return;
 		}
 		
@@ -382,7 +383,33 @@
 			
 			return ret;
 		}
+
+		function loadTypes(){
+			let url = "/lcis/types";
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function handle(){
+				if(xhr.readyState == 4){
+					if(xhr.status == 200){
+						let rows = JSON.parse(xhr.responseText);
+						rows.forEach(function printrows(row,i){
+							let code = row.code;
+							let str = row.string;
+							clearTo(4,4+i,21,4+i);
+							clearTo(23,4+i,40,4+i);
+							printAmount(4,4+i,code);
+							printAmount(23,4+i,str);	
+						});
+					} else if(xhr.status == 400){
+						errorConsole.innerHTML = "QUERY FAILED";
+					}
+				}
+			}
+			xhr.open("GET",url,true);
+			xhr.send(null);
+		}
 	}
+
+
 
 	function handleSpecialCases(key) {
 		var eltx = curelt.dataset.posX;

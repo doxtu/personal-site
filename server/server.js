@@ -54,6 +54,7 @@ app.get("/lcis/payments",query.read);
 app.post("/lcis/payments",query.create);
 app.delete("/lcis/payments",query.delete);
 app.put("/lcis/payments",query.update);
+app.get("/lcis/types",query.type);
 
 //app.listen(port);
 const httpServ = http.createServer(app);

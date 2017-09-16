@@ -165,5 +165,13 @@ module.exports = (function exe(){
     	});
     };
 
+    api.type = function(req,res){
+		let sql = "SELECT * FROM types";
+		connection.query(sql,function(err,rows,fields){
+			if(err) {res.status(500).send("QUERY FAILED"); return;}
+			res.status(200).send(rows);
+		});
+    }
+
     return api;
 })();
