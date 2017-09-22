@@ -10,7 +10,7 @@ var pass = "password";
 var hash = bcrypt.hashSync(pass,saltRounds);
 
 connection.query("INSERT INTO users VALUES(NULL,?,?)",[user,hash],function(err,rows,fields){
-	if(err) throw err;
-	console.log("RDOL USER ADDED");
-	process.exit();
+    if(err) throw err;
+    console.log("RDOL USER ADDED");
+    process.exit();
 });

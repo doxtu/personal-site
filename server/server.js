@@ -20,15 +20,15 @@ var app = express();
 
 //https stuff
 const creds = {
-	key:fs.readFileSync(certPath + "privkey.pem"),
-	cert: fs.readFileSync(certPath + "fullchain.pem")
+    key:fs.readFileSync(certPath + "privkey.pem"),
+    cert: fs.readFileSync(certPath + "fullchain.pem")
 };
 
 
 /*Middleware*/
 app.all("*",function(req,res,next){
-	if(req.protocol === "http") res.redirect("https://gonzaleslabs.com" + req.url);
-	next();
+    if(req.protocol === "http") res.redirect("https://gonzaleslabs.com" + req.url);
+    next();
 });
 app.use(express.static(path.join(__dirname,"../public")));
 app.use(bodyParser.json());
@@ -38,12 +38,12 @@ app.use(require('helmet')());
 
 /*LCIS Login authentication*/
 passport.use(new LocalStrategy({
-	usernameField: "user",
-	passwordField: "pass"
+    usernameField: "user",
+    passwordField: "pass"
 }, query.authenticate));
 
 app.post('/lcis/login',passport.authenticate("local",{session:false}),function(req,res){
-	res.status(200).send("Good job!");
+    res.status(200).send("Good job!");
 });
 
 /*Message handler*/

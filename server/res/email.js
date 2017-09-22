@@ -18,9 +18,9 @@ module.exports = (function(){
     return function(req,res){
       let query = req.body;
       if(query.message == ""){
- 		res.status(500).send("No message");
-		return;
-	}
+        res.status(500).send("No message");
+        return;
+    }
       transporter1.sendMail({
         from:process.env.GMAILUSER,
         to:process.env.GMAILUSER,

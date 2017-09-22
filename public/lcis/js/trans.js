@@ -192,7 +192,7 @@ const blankgrid = [
     tubs: tubs,
     pmsi: pmsi,
     kmbl: kmbl,
-	ddcl: ddcl,
-	type: type,
-	logo:logo
+    ddcl: ddcl,
+    type: type,
+    logo:logo
   };
